@@ -1,0 +1,30 @@
+import time
+from drive import Drive
+from intake import Intake
+from flywheel import Flywheel
+from indexer import Indexer
+from hood import Hood
+
+
+class Robot:
+    def __init__(self):
+        self.drive = Drive()
+        self.intake = Intake()
+        self.flywheel = Flywheel()
+        self.indexer = Indexer()
+        self.hood = Hood()
+
+    def shoot(self, balls=1, hood_angle=0, delay_s=0.6):
+        """Fire `balls` balls, one at a time, at the given hood angle."""
+        self.hood.set_angle(hood_angle)
+        self.flywheel.spin_up()
+        for _ in range(balls):
+            self.indexer.release_one()
+            time.sleep(delay_s)  # flywheel recovers between shots
+        self.flywheel.off()
+
+    def stop(self):
+        self.drive.stop()
+        self.intake.off()
+        self.flywheel.off()
+        self.indexer.close()
