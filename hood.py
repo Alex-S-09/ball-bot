@@ -1,5 +1,6 @@
 from pitop import ServoMotor
 
+
 class Hood:
     """Adjustable hood that sets the launch angle."""
 
@@ -7,7 +8,9 @@ class Hood:
         self.servo = ServoMotor(port)
         self.min = min_angle
         self.max = max_angle
+        self.angle = 0
         self.set_angle(0)
 
     def set_angle(self, angle):
-        self.servo.target_angle = max(self.min, min(self.max, angle))
+        self.angle = max(self.min, min(self.max, angle))
+        self.servo.target_angle = self.angle
