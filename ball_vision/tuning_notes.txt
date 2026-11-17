@@ -1,0 +1,28 @@
+CAMERA SETUP (these numbers only apply to this exact mounting)
+  Height: ~20 in above the robot, tilted ~20 degrees down
+  Camera sits directly over the intake; the intake extends ~9 in in front of it
+  Resolution: 640x480
+
+VISION (also at the top of vision.py)
+  PARAM2 = 29
+  MIN_R = 4
+  MAX_R = 35
+  CROP_TOP = 0.30
+
+MEASUREMENTS
+  Ball at bottom edge of frame: radius ~24 px, y_frac ~0.9
+  Ball at bottom edge, distance from camera: 30 in
+  Ball at bottom edge to fully inside intake: 26 in  -> BLIND_INCHES
+  Far detection: reliable to ~2.5 m (radius 6-7 px)
+
+HANDOFF (for the autonomous code; not in any file yet)
+  HANDOFF_Y = 0.80       last seen below this line in the frame, then vanished
+  HANDOFF_SIZE = 0.056   about radius 18 px (size = 2 * r / 640)
+  BLIND_INCHES = 26
+  APPROACH_POWER = 0.35  (placeholder)
+  INCHES_PER_SEC = ?     (measure with calibrate_drive.py on Thursday)
+
+TO RE-CHECK ON THURSDAY (camera on the real robot)
+  1. Crop first, then radii, then param2
+  2. Last y_frac / size seen before the ball vanishes while driving
+  3. Blind-drive distance with a real ball

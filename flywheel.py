@@ -1,10 +1,10 @@
 import time
-from pitop import EncoderMotor, ForwardDirection
+from motors import MotorDriver
+
 
 class Flywheel:
-    
-    def __init__(self, port="M2", power=1.0, spin_up_s=1.5):
-        self.motor = EncoderMotor(port, ForwardDirection.CLOCKWISE)
+    def __init__(self, pins=(19, 24), power=1.0, spin_up_s=1.5):
+        self.motor = MotorDriver(*pins)
         self.power = power
         self.spin_up_s = spin_up_s
 

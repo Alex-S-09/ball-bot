@@ -1,16 +1,16 @@
-from motors import make_motor, set_signed
+from motors import MotorDriver
 
 
 class Intake:
-    def __init__(self, port="M1", power=0.8):
-        self.motor = make_motor(port, clockwise=True)
+    def __init__(self, pins=(18, 23), power=0.8):
+        self.motor = MotorDriver(*pins)
         self.power = power
 
     def intake(self):
-        set_signed(self.motor, self.power)
+        self.motor.set_power(self.power)
 
     def reverse(self):
-        set_signed(self.motor, -self.power)
+        self.motor.set_power(-self.power)
 
     def stop(self):
         self.motor.stop()

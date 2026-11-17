@@ -1,21 +1,23 @@
 import time
-from pitop import ServoMotor
+from gpiozero import Servo
 
 
 class Indexer:
-    def __init__(self, port="S0", closed=-30, open_=30, open_s=0.25, settle_s=0.4):
-        self.servo = ServoMotor(port)
-        self.closed = closed
-        self.open = open_
-        self.open_s = open_s
-        self.settle_s = settle_s  # wait after closing so a second release can't overlap
+    """Continuous-rotation servo that feeds exactly one ball per release."""
+
+    def __init__(self, pin=27, speed=0.5, spin_s=0.4, settle_s=0.4):
+        self.servo = Servo(pin)
+        self.speed = speed        # -1..1; sign sets direction
+        self.spin_s = spin_s      # spin time per ball: TUNE THIS
+        self.settle_s = settle_s
         self.close()
 
     def close(self):
-        self.servo.target_angle = self.closed
+        """Stop the servo by cutting its signal entirely (no creeping)."""
+        self.servo.detach()
 
     def release_one(self):
-        self.servo.target_angle = self.open
-        time.sleep(self.open_s)
+        self.servo.value = self.speed
+        time.sleep(self.spin_s)
         self.close()
         time.sleep(self.settle_s)
