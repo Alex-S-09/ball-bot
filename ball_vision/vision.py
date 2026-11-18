@@ -1,9 +1,9 @@
 import cv2
 
-PARAM2 = 29     # lower = more detections (and more false ones)
-MIN_R = 4       # smallest ball radius in pixels (far away)
+PARAM2 = 22     # lower = more detections (and more false ones)
+MIN_R = 15      # smallest ball radius in pixels (far away)
 MAX_R = 35      # largest radius (ball at the bottom edge of the frame)
-CROP_TOP = 0.30  # fraction of the frame to ignore from the top (0 to 0.8)
+CROP_TOP = 0.49  # fraction of the frame to ignore from the top (0 to 0.8)
 
 
 def find_ball(frame):

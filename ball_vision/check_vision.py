@@ -2,7 +2,7 @@ import sys
 import cv2
 from vision import find_ball
 
-CAMERA = 1  # use 0 on the pi-top
+CAMERA = 0  # use 0 on the pi-top
 BACKEND = cv2.CAP_DSHOW if sys.platform == "win32" else cv2.CAP_ANY
 
 cap = cv2.VideoCapture(CAMERA, BACKEND)

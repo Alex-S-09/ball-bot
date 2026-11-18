@@ -2,7 +2,7 @@ import sys
 import cv2
 import numpy as np
 
-CAMERA = 1  # camera number used when no argument is given (use 0 on the pi-top)
+CAMERA = 0  # camera number used when no argument is given (use 0 on the pi-top)
 BACKEND = cv2.CAP_DSHOW if sys.platform == "win32" else cv2.CAP_ANY
 
 # Usage:
